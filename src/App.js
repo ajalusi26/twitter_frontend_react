@@ -8,14 +8,14 @@ import HomePage from './Components/Main_page/HomePage'
 
 function App() {
   return (
-   <>
+   
    <Routes>
      <Route  exact path={"/"} element={ <Login/>}/>
      <Route exact path={"createAccount"} element={ <CreateAccount/>}/>
      <Route exact path={"HomePage"} element={ <HomePage/>}/>
    </Routes>
  
-   </>
+
   )
 }
 

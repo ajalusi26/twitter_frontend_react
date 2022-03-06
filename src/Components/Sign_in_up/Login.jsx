@@ -45,6 +45,7 @@ function Login(){
 
 
     return (
+        <div className="wrapper">
         <div className="form-holder">
     
             <img className='login-logo' src="https://static.dezeen.com/uploads/2012/06/dezeen_twitter-bird.gif"></img>
@@ -57,6 +58,7 @@ function Login(){
                 <button type="submit" >Login</button>
                 <Link to={"/createAccount"} className="link">Dont have an account? Click here to create one!</Link>
             </form>
+        </div>
         </div>
     )
 }
