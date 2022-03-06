@@ -52,6 +52,7 @@ button {
   font-size: 20px;
   margin: 20%;
   margin-top: 30%;
+  margin-bottom: 15px;
   align-self: center;
   border: none;
   border-radius: 30px;
@@ -59,4 +60,16 @@ button {
 
 button:hover {
   background-color: rgb(31, 30, 30);
+}
+
+.link {
+  text-decoration: none;
+  margin: auto;
+  margin-top: 23.55%;
+  padding-left: 23%;
+  padding-right: 23%;
+  align-self: center;
+
+  color: black;
+  font-size: 15px;
 }

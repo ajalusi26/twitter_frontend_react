@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom"
 // Css
 import './Sign_in_up.css';
 
-function Login(){
+function CreateAccount(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -15,28 +15,23 @@ function Login(){
         .then(data => console.log(data))
     }, [])
     
-    function login(e){
+    function createUser(e){
         e.preventDefault()
-        let loginData = {
+        let newUserData = {
             username: username, 
             password: password
         }
-        fetch('http://127.0.0.1:3000/login', {
+        fetch('http://127.0.0.1:3000/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(loginData),
+            body: JSON.stringify(newUserData),
             })
             .then(response => response.json())
             .then(data => {
             {
-                if(data.username){
-                    navigate('/HomePage')
-                }
-                else{
-                    alert('Wrong username or password')
-                }  
+                console.log(data)    
             }
         })
         setPassword('')
@@ -49,16 +44,16 @@ function Login(){
     
             <img className='login-logo' src="https://static.dezeen.com/uploads/2012/06/dezeen_twitter-bird.gif"></img>
          
-            <h2 className='login-title'>Sign in to Twitter</h2>
-            <form onSubmit={login}>
+            <h2 className='login-title'>Create a twitter account</h2>
+            <form onSubmit={createUser}>
                 <input type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
                 <br></br>
                 <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                <button type="submit" >Login</button>
-                <Link to={"/createAccount"} className="link">Dont have an account? Click here to create one!</Link>
+                <button type="submit" >Create User</button>
+                <Link to={"/"} className="link">Already have an account? Click to sign in</Link>
             </form>
         </div>
     )
 }
 
-export default Login
+export default CreateAccount
