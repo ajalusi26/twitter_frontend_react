@@ -9,12 +9,12 @@ function Feed() {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-      //1 in route is the user, make it dynamic
-   fetch('http://127.0.0.1:3000/user_feed/13')
+      //:id in route is the user, make it dynamic
+   fetch('http://127.0.0.1:3000/user_feed/1')
    .then(r => r.json())
    .then(data => {
     setFeed(data)
-    console.log(feed)
+    
   })
   }, []);
 
@@ -23,7 +23,7 @@ function Feed() {
       <div className="feed__header">
         <h2>Home</h2>
       </div>
-
+      {console.log(feed)}
       <PostTweet setFeed={setFeed} feed={feed}/>
 
     

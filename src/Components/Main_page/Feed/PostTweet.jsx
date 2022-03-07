@@ -25,7 +25,7 @@ function PostTweet({setFeed, feed}){
           <form>
             <div className="tweetBox__input">
                 {/* get from session id */}
-              <Avatar  src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" />
+              <Avatar  src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" style={{ width: '50px', height: '50px' }}/>
               <input
                 onChange={(e) => setTweetMessage(e.target.value)}
                 value={tweetMessage}

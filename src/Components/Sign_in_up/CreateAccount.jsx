@@ -41,18 +41,20 @@ function CreateAccount(){
 
 
     return (
-        <div className="form-holder">
-    
-            <img className='login-logo' src="https://static.dezeen.com/uploads/2012/06/dezeen_twitter-bird.gif"></img>
-         
-            <h2 className='login-title'>Create a twitter account</h2>
-            <form onSubmit={createUser}>
-                <input type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
-                <br></br>
-                <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                <button type="submit" >Create User</button>
-                <Link to={"/"} className="link">Already have an account? Click to sign in</Link>
-            </form>
+        <div className="wrapper">
+            <div className="form-holder">
+        
+                <img className='login-logo' src="https://static.dezeen.com/uploads/2012/06/dezeen_twitter-bird.gif"></img>
+            
+                <h2 className='login-title'>Create a twitter account</h2>
+                <form onSubmit={createUser}>
+                    <input type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
+                    <br></br>
+                    <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                    <button type="submit" >Create User</button>
+                    <Link to={"/"} className="link">Already have an account? Click to sign in</Link>
+                </form>
+            </div>
         </div>
     )
 }

@@ -55,3 +55,7 @@
 .red {
   color: red;
 }
+
+.icon:hover {
+  cursor: pointer;
+}
