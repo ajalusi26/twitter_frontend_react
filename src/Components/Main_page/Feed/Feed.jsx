@@ -5,12 +5,12 @@ import PostTweet from "./PostTweet"
 import "./Feed.css";
 import FlipMove from "react-flip-move";
 
-function Feed() {
+function Feed({setTweetPage, tweetPage}) {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
       //:id in route is the user, make it dynamic
-   fetch('http://127.0.0.1:3000/user_feed/1')
+   fetch('http://127.0.0.1:3000/user_feed/2')
    .then(r => r.json())
    .then(data => {
     setFeed(data)
@@ -38,7 +38,9 @@ function Feed() {
             is_retweet={feed.is_retweet}
             tweet={feed.tweet}
             profile_pic={feed.profile.profile_pic}
-           
+            tweetPage={tweetPage}
+            setTweetPage={setTweetPage}
+            tweet_id={feed.id}
           />
         ))}
    

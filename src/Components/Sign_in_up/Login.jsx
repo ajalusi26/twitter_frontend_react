@@ -12,7 +12,14 @@ function Login(){
     useEffect(()=>{
         fetch('http://127.0.0.1:3000/is_logged_in')
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            // if(data.username){
+            //     navigate('/HomePage')
+            // }else{
+            //     return
+            // }
+        })
     }, [])
     
     function login(e){
@@ -32,11 +39,12 @@ function Login(){
             .then(data => {
             {
                 if(data.username){
+                    console.log(data)
                    navigate('/HomePage')
                 }
                 else{
                     console.log(data)
-                    alert('Wrong username or password')
+                    // alert('Wrong username or password')
                 }  
             }
         })

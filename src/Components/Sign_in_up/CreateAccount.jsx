@@ -46,7 +46,7 @@ function CreateAccount(){
         
                 <img className='login-logo' src="https://static.dezeen.com/uploads/2012/06/dezeen_twitter-bird.gif"></img>
             
-                <h2 className='login-title'>Create a twitter account</h2>
+                <h2 className='login-title'>Create a Twitter Account</h2>
                 <form onSubmit={createUser}>
                     <input type="text" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)} />
                     <br></br>
