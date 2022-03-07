@@ -35,19 +35,19 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
             </div>
             {/* <img src={image} alt="" /> */}
             <div className="post__footer">
-            <span className="icon">
+            <span className="icon-comment icon">
               <ChatBubbleOutlineIcon fontSize="small" />
               {comment_count}
             </span>
-            <span className="icon">
+            <span className="icon-retweet icon">
               <RepeatIcon fontSize="small" />
               {retweet_count}
             </span>
-            <span className="icon" onClick={favorite}>
-              {isFavorite ? <FavoriteOutlinedIcon fontSize="small" style={{color: '#f91880'}}/> :  <FavoriteBorderIcon fontSize="small" />}
+            <span  onClick={favorite} className={isFavorite ? " icon-like icon liked": 'icon-like icon'}>
+              {isFavorite ? <FavoriteOutlinedIcon fontSize="small" /> :  <FavoriteBorderIcon fontSize="small" />}
               {like_count}
             </span>
-            <span className="icon">
+            <span className="icon-download icon">
               <PublishIcon fontSize="small" />
             </span>
             </div>
