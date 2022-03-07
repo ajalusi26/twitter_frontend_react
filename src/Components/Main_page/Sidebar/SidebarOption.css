@@ -12,11 +12,11 @@
 }
 
 .sidebarOption > .MuiSvgIcon-root {
-  padding: 20px;
+  padding: 10px;
 }
 
 .sidebarOption > h2 {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 20px;
   margin-right: 20px;
 }

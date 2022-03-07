@@ -32,9 +32,10 @@ function Login(){
             .then(data => {
             {
                 if(data.username){
-                    navigate('/HomePage')
+                   navigate('/HomePage')
                 }
                 else{
+                    console.log(data)
                     alert('Wrong username or password')
                 }  
             }

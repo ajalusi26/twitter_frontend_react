@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {Link, useNavigate} from "react-router-dom"
 // Css
 import './Sign_in_up.css';
@@ -9,11 +9,11 @@ function CreateAccount(){
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        fetch('http://127.0.0.1:3000/is_logged_in')
-        .then(r => r.json())
-        .then(data => console.log(data))
-    }, [])
+    // useEffect(()=>{
+    //     fetch('http://127.0.0.1:3000/is_logged_in')
+    //     .then(r => r.json())
+    //     .then(data => console.log(data))
+    // }, [])
     
     function createUser(e){
         e.preventDefault()
@@ -32,6 +32,7 @@ function CreateAccount(){
             .then(data => {
             {
                 console.log(data)    
+                navigate('/')
             }
         })
         setPassword('')
