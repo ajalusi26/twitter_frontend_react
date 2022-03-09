@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Shizuru&display=swap");
+
+.RightPanel {
+  flex: 0.4;
+}
+
+.RightPanel__input {
+  display: flex;
+  align-items: center;
+  background-color: var(--twitter-background);
+  padding: 0px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 40px;
+}
+
+.RightPanel__input > input {
+  border: none;
+  background-color: var(--twitter-background);
+  padding: none;
+  margin: none;
+  margin-bottom: 8px;
+  height: 25px;
+}
+
+.RightPanel__searchIcon {
+  color: gray;
+  padding-left: 5px;
+}
+
+.RightPanel__widgetContainer {
+  margin-top: 15px;
+  margin-left: 20px;
+  padding: 20px;
+  background-color: #f5f8fa;
+  border-radius: 20px;
+}
+
+.RightPanel__widgetContainer > h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.happening-text {
+  font-size: 50px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-family: "Roboto", sans-serif;
+}

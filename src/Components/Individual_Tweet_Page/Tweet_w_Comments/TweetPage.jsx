@@ -15,6 +15,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 function TweetPage(){
     const [tweetData, setTweetData] = useState([])
     const [loaded, setLoaded] = useState(false)
+    const [comments, setComments] = useState([])
     const navigate = useNavigate() 
     useEffect(() => {
         //:id in route is the tweet id, make it dynamic
@@ -23,6 +24,7 @@ function TweetPage(){
      .then(data => {
       console.log(data)
       setTweetData(data)
+      setComments(data.comments.sort((a, b) => b.id - a.id))
       setLoaded(!loaded)
     })
     }, []);
@@ -49,8 +51,9 @@ function TweetPage(){
                 user_id={tweetData.user_id}
                 tweet_id={tweetData.id}
               />
-              <WriteComment/>
-              {tweetData.comments.map((comment) => <Comment commentData={comment} key={comment.id}/>)}
+              <WriteComment comments={comments} setComments={setComments}/>
+               
+              {comments.map((comment) => <Comment commentData={comment} key={comment.id} comments={comments} setComments={setComments}/>)}
             </div>
         )
     }else{

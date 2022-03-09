@@ -29,9 +29,13 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
         })
         .then(response => response.json())
         .then(data => {
-      
-            setLikes(data)
-            setIsFavorite(!isFavorite)
+          if(data.liked){
+            setIsFavorite(true)
+            setLikes(data.liked)
+          }else { 
+            setIsFavorite(false)
+            setLikes(data.unliked)      
+          }
         
     })}
 
@@ -46,10 +50,11 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
     console.log(e.target.id)
   }
     return (
-        <div className="post" onClick={showMore} >
+        <div className="post"  >
           <div className="post__avatar">
             <Avatar src={profile_pic} />
           </div>
+          
           <div className="post__body">
             <div className="post__header">
               <div className="post__headerName">
@@ -66,15 +71,15 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
             </div>
             {/* <img src={image} alt="" /> */}
             <div className="post__footer">
-            <span className="icon-comment icon" id="icon">
-              <ChatBubbleOutlineIcon fontSize="small" id="icon"/>
+            <span className="icon-comment icon" onClick={showMore}>
+              <ChatBubbleOutlineIcon fontSize="small" />
               {comment_count}
             </span>
             <span className="icon-retweet icon" id="icon">
               <RepeatIcon fontSize="small" id="icon"/>
               {retweet_count}
             </span>
-            <span   className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon">
+            <span   className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon" onClick={favorite}>
               {isFavorite ? <FavoriteOutlinedIcon fontSize="small" id="icon" onClick={favorite}/> :  <FavoriteBorderIcon fontSize="small" id="icon" onClick={favorite}/>}
               {likes}
             </span>

@@ -14,6 +14,7 @@ function Comment({commentData}){
   const [isFavorite, setIsFavorite] = useState(false);
   const [commentAuthor, setCommentAuthor] = useState([])
   const [done, setDone] = useState(false)
+  const [likes, setLikes] = useState(commentData.like_count)
   let navigate = useNavigate()
 
   useEffect(()=>{
@@ -27,14 +28,40 @@ function Comment({commentData}){
 
   // let navigate = useNavigate()
   function favorite(){
-    //make route to add like to comment from user based on session
-    setIsFavorite(!isFavorite);
+    let postData = {
+      comment_id: commentData.id,
+      user_id: localStorage.current_user
+    }
+
+    fetch('http://127.0.0.1:3000/like_comment', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.liked){
+          setIsFavorite(true)
+          setLikes(data.liked)
+        }else { 
+          setIsFavorite(false)
+          setLikes(data.unliked)
+          
+        }
+         
+      
+  })
+  
+  
   }
   function showMore(e){ 
     if(e.target.id !== 'icon'){
     // localStorage.setItem('selected_tweet', tweet_id )
     // localStorage.setItem('tweet_author', username )
-    navigate('/moreInfo')
+    // navigate('/moreInfo')
+    return
     } else{
       return
     }
@@ -70,7 +97,7 @@ function Comment({commentData}){
             </span>
             <span  onClick={favorite} className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon">
               {isFavorite ? <FavoriteOutlinedIcon fontSize="small" id="icon"/> :  <FavoriteBorderIcon fontSize="small" id="icon"/>}
-              {commentData.like_count}
+              {likes}
             </span>
             <span className="icon-download icon" id="icon">
               <PublishIcon fontSize="small" id="icon"/>

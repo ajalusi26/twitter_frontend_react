@@ -10,26 +10,33 @@ import PublishIcon from "@material-ui/icons/Publish";
 import {useNavigate} from 'react-router-dom'
 import './Tweet.css'
 function Tweet({comments, comment_count, like_count, retweet_count, is_retweet, tweet, tweet_id, user, profile}){
-    // const [tweetAuthor, setTweetAuthor] = useState([])
-    // const [loaded, setLoaded] = useState(false)
-    // useEffect(() => {
-    //     //:id in route is the tweet id, make it dynamic
-    //  fetch(`http://127.0.0.1:3000/users/${localStorage.tweet_author}`)
-    //  .then(r => r.json())
-    //  .then(data => {
-    //   console.log(data)
-    //   setTweetAuthor(data)
-    //   setLoaded(!loaded)
-    // })
-    // }, []);
-    
-    
     
     const [isFavorite, setIsFavorite] = useState(false);
-    function favorite(){
-        //make route to add like to comment from user based on session
-        setIsFavorite(!isFavorite);
+    const [likes, setLikes] = useState(like_count);
+
+      function favorite(e){
+      let postData = {
+        tweet_id: tweet_id,
+        user_id: localStorage.current_user
       }
+      fetch('http://127.0.0.1:3000/like_tweet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if(data.liked){
+            setIsFavorite(true)
+            setLikes(data.liked)
+          }else { 
+            setIsFavorite(false)
+            setLikes(data.unliked)      
+          }
+        
+    })}
    
         return(
             <div className="tweet">
@@ -64,7 +71,7 @@ function Tweet({comments, comment_count, like_count, retweet_count, is_retweet, 
                 </span>
                 <span  onClick={favorite} className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon">
                   {isFavorite ? <FavoriteOutlinedIcon fontSize="small" id="icon"/> :  <FavoriteBorderIcon fontSize="small" id="icon"/>}
-                  {like_count}
+                  {likes}
                 </span>
                 <span className="icon-download icon" id="icon">
                   <PublishIcon fontSize="small" id="icon"/>

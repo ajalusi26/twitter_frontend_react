@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./WriteComment.css";
 import { Avatar, Button } from "@material-ui/core";
 
-function WriteComment({setFeed, feed}){
+function WriteComment({comments, setComments}){
     const [comment, setComment] = useState("");
 
     function sendComment(e){ 
@@ -23,7 +23,7 @@ function WriteComment({setFeed, feed}){
             })
             .then(response => response.json())
             .then(data => {
-                window.location.reload()
+                setComments([data, ...comments])
             })
     }
     

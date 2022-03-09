@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import Sidebar from './Sidebar/Sidebar.jsx'
 import Feed from './Feed/Feed.jsx'
-
+import RightPanel from '../Right_panel/RightPanel'
 import './BaseLineCss.css'
 
 function HomePage() {
@@ -11,8 +11,9 @@ function HomePage() {
     return (
         
         <div className="app">
-    <Sidebar/>
-       <Feed />
+        <Sidebar/>
+        <Feed />
+        <RightPanel/>
         </div>
     )
 }
