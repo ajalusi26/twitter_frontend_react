@@ -9,8 +9,8 @@ function Feed({setTweetPage, tweetPage}) {
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
-      //:id in route is the user, make it dynamic
-   fetch('http://127.0.0.1:3000/user_feed/2')
+      //localhost needs to be replaced with sessions
+   fetch(`http://127.0.0.1:3000/user_feed/${localStorage.current_user}`)
    .then(r => r.json())
    .then(data => {
     setFeed(data)

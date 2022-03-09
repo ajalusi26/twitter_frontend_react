@@ -13,12 +13,13 @@ function Login(){
         fetch('http://127.0.0.1:3000/is_logged_in')
         .then(r => r.json())
         .then(data => {
-            console.log(data);
-            // if(data.username){
-            //     navigate('/HomePage')
-            // }else{
-            //     return
-            // }
+            if(data.username){
+                // navigate('/HomePage')
+                console.log(data)
+            }else{
+
+               console.log(data)
+            }
         })
     }, [])
     
@@ -40,11 +41,12 @@ function Login(){
             {
                 if(data.username){
                     console.log(data)
+                    localStorage.setItem('current_user', data.id);
                    navigate('/HomePage')
                 }
                 else{
                     console.log(data)
-                    // alert('Wrong username or password')
+                    alert('Wrong username or password')
                 }  
             }
         })

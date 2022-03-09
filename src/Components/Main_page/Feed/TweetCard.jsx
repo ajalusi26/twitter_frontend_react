@@ -12,36 +12,55 @@ import {useNavigate} from 'react-router-dom'
 
 function TweetCard({displayName, username, comment_count, like_count, retweet_count, is_retweet, tweet, profile_pic, tweet_id}){
   const [isFavorite, setIsFavorite] = useState(false);
-
+  const [likes, setLikes] = useState(like_count)
   let navigate = useNavigate()
-  function favorite(){
-    //make route to add like to comment from user based on session
-    setIsFavorite(!isFavorite);
-  }
+  
+  function favorite(e){
+      let postData = {
+        tweet_id: tweet_id,
+        user_id: localStorage.current_user
+      }
+      fetch('http://127.0.0.1:3000/like_tweet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+        })
+        .then(response => response.json())
+        .then(data => {
+      
+            setLikes(data)
+            setIsFavorite(!isFavorite)
+        
+    })}
+
   function showMore(e){ 
-    if(e.target.id != 'icon'){
+    if(e.target.id !== 'icon'){
     localStorage.setItem('selected_tweet', tweet_id )
+    localStorage.setItem('tweet_author', username )
     navigate('/moreInfo')
     } else{
       return
     }
+    console.log(e.target.id)
   }
     return (
-        <div className="post" onClick={showMore} id={tweet_id}>
+        <div className="post" onClick={showMore} >
           <div className="post__avatar">
             <Avatar src={profile_pic} />
           </div>
           <div className="post__body">
             <div className="post__header">
-              <div className="post__headerText">
+              <div className="post__headerName">
                 <h3>
                   {displayName}{" "}
-                  <span className="post__headerSpecial">
+                  <span className="post__header-Special">
                      @{username}
                   </span>
                 </h3>
               </div>
-              <div className="post__headerDescription" id={tweet_id}>
+              <div className="post__header" id={'more'}>
                 <p>{tweet}</p>
               </div>
             </div>
@@ -55,9 +74,9 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
               <RepeatIcon fontSize="small" id="icon"/>
               {retweet_count}
             </span>
-            <span  onClick={favorite} className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon">
-              {isFavorite ? <FavoriteOutlinedIcon fontSize="small" id="icon"/> :  <FavoriteBorderIcon fontSize="small" id="icon"/>}
-              {like_count}
+            <span   className={isFavorite ? " icon-like icon liked": 'icon-like icon'} id="icon">
+              {isFavorite ? <FavoriteOutlinedIcon fontSize="small" id="icon" onClick={favorite}/> :  <FavoriteBorderIcon fontSize="small" id="icon" onClick={favorite}/>}
+              {likes}
             </span>
             <span className="icon-download icon" id="icon">
               <PublishIcon fontSize="small" id="icon"/>
@@ -67,8 +86,6 @@ function TweetCard({displayName, username, comment_count, like_count, retweet_co
         </div>
       );
     }
-        
-    
 
 
 export default TweetCard

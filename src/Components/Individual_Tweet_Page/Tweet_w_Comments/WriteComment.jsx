@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import "./PostTweet.css";
+import "./WriteComment.css";
 import { Avatar, Button } from "@material-ui/core";
 
-function PostTweet({setFeed, feed}){
-    const [tweetMessage, setTweetMessage] = useState("");
+function WriteComment({setFeed, feed}){
+    const [comment, setComment] = useState("");
 
-    function sendTweet(e){ 
+    function sendComment(e){ 
         e.preventDefault();
 
         let toSend = {
-          tweet: tweetMessage,
-          user_id: localStorage.current_user
+          text: comment,
+          user_id: localStorage.current_user, 
+          tweet_id: localStorage.selected_tweet
         }
-        setTweetMessage("")
-        fetch('http://127.0.0.1:3000/new_tweet', {
+        setComment("")
+        fetch('http://127.0.0.1:3000/new_comment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +23,6 @@ function PostTweet({setFeed, feed}){
             })
             .then(response => response.json())
             .then(data => {
-                setFeed([...feed, data])
                 window.location.reload()
             })
     }
@@ -34,23 +34,24 @@ function PostTweet({setFeed, feed}){
                 {/* get from session id */}
               <Avatar  src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" style={{ width: '50px', height: '50px' }}/>
               <input
-                onChange={(e) => setTweetMessage(e.target.value)}
-                value={tweetMessage}
-                placeholder="What's happening?"
+                onChange={(e) => setComment(e.target.value)}
+                value={comment}
+                placeholder="Tweet your reply"
                 type="text"
               />
-            </div>
+            
     
             <Button
-              onClick={sendTweet}
+              onClick={sendComment}
               type="submit"
               className="tweetBox__tweetButton"
             >
-              Tweet
+              Reply
             </Button>
+            </div>
           </form>
         </div>
       );
     }
     
-    export default PostTweet;
+    export default WriteComment;
